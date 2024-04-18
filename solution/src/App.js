@@ -111,7 +111,7 @@ function App() {
   return (
     <div className={"App"}>
       <Grid container justifyContent={"center"}>
-      <Grid container item xs={6} mt={6} >
+      <Grid container item xs={6} mt={6} minWidth={'500px'} >
       <form autoComplete="off">
         <Grid container>
           <Grid container item pb={1}>
@@ -148,7 +148,6 @@ function App() {
                 fullWidth
                 id={'location'}
                 value={location}
-                disabled={isCheckingName}
                 onChange={handleLocationChange}
                 sx={{textAlign: 'left'}}
               >
@@ -180,7 +179,10 @@ function App() {
             </TableHead>
             <TableBody>
               {/* fill in empty rows in table */}
-              {tableArray.concat(Array.from(Array(minimumTableRows - tableArray.length))).map(tableRowComponent)}
+              {tableArray.length < minimumTableRows ?
+                tableArray.concat(Array.from(Array(minimumTableRows - tableArray.length))).map(tableRowComponent) :
+                tableArray.map(tableRowComponent)
+              }
             </TableBody>
           </Table>
         </TableContainer>
