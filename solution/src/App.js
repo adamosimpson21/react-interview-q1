@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import {
-  Box,
   Button,
-  Grid, InputLabel,
+  Grid,
   MenuItem,
   Paper,
   Select, Table, TableBody, TableCell,
@@ -47,7 +45,7 @@ function App() {
       validateName(name);
     }, debounceDuration)
     return () => clearTimeout(timeoutId)
-  }, [name, debounceDuration]);
+  }, [name]);
 
   const handleNameChange = event => {
     // whenever input changes, disable submit until name checking done
@@ -159,11 +157,11 @@ function App() {
           </Grid>
           <Grid item xs={12} py={2} textAlign={'right'}>
             {/* if the expected delay is less than 2 seconds, disabling buttons should be enough. If the expected delay was longer, add a loading spinner*/}
-            <Button disabled={isCheckingName || loading} variant="contained" color="primary" onClick={handleClear} sx={{marginRight: 5, boxShadow: '3px 3px 7px gray' }}>
+            <Button disabled={isCheckingName || loading} variant="contained" color="primary" onClick={handleClear} sx={{marginRight: 5, boxShadow: '3px 3px 7px gray', textTransform: 'capitalize' }}>
               Clear
             </Button>
             {/* Usually I put Add buttons on the left and Clear on the right, but this follows the design */}
-            <Button disabled={isCheckingName || nameError || loading} variant="contained" color="primary" onClick={handleAdd} sx={{boxShadow: '3px 3px 7px gray' }}>
+            <Button disabled={isCheckingName || nameError || loading} variant="contained" color="primary" onClick={handleAdd} sx={{boxShadow: '3px 3px 7px gray', textTransform: 'capitalize' }}>
               Add
             </Button>
           </Grid>
@@ -172,9 +170,9 @@ function App() {
         <TableContainer component={Paper}>
           <Table aria-label="name and location table">
             <TableHead>
-              <TableRow sx={{ backgroundColor: 'darkgrey'}}>
-                <TableCell>Name</TableCell>
-                <TableCell>Location</TableCell>
+              <TableRow sx={{backgroundColor: 'darkgrey'}}>
+                <TableCell width={'50%'}>Name</TableCell>
+                <TableCell width={'50%'}>Location</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
