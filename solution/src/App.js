@@ -84,8 +84,9 @@ function App() {
   const handleAdd = () => {
     // validate all data fields
     if(name !== "" && location !== "" && !isCheckingName && !nameError){
-      // update array
+      // add value at end of table
       setTableArray([...tableArray, {name, location}]);
+      // reset form
       setName("");
       setLocation("");
     }
@@ -94,7 +95,7 @@ function App() {
   const tableRowComponent = (tableRowData, index) => {
     return <TableRow
       key={tableRowData ? `${tableRowData.name + index}-table-row` : `${index}-table-row`}
-      // zebra stripes to assist user
+      // zebra stripes to assist user visuals
       sx={{ '&:last-child td, &:last-child th': { border: 0 }, 'backgroundColor': (index)%2 ? 'lightgray' : ''}}
     >
       <TableCell component="th" scope="row">
